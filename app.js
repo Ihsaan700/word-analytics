@@ -5,6 +5,7 @@ const twitterOutput = document.querySelector('.stat__number--twitter');
 const facebookOutput = document.querySelector('.stat__number--facebook');
 
 textAreaEl.addEventListener('input', () => {
+    const allChars = textAreaEl.value;
     const numberOfChars = textAreaEl.value.length;
     const twitterCharsLeft = 280 - numberOfChars;
     const facebookCharsLeft = 2200 - numberOfChars;
@@ -15,7 +16,13 @@ textAreaEl.addEventListener('input', () => {
     twitterOutput.textContent = twitterCharsLeft;
     facebookOutput.textContent = facebookCharsLeft;
 
+    // calculate no. of words
+    const words = allChars.split(' ');
+    wordsOutput.textContent = words.length;
+    // if text-area is empty show 0 words
+    textAreaEl.value.length === 0 ? wordsOutput.textContent = 0 : null
+
     // add visual indication limit is exceeded
-    facebookCharsLeft < 0 ? facebookOutput.classList.add('stat__number--limit') : facebookOutput.classList.remove('stat__number--limit')
-    twitterCharsLeft < 0 ? twitterOutput.classList.add('stat__number--limit') : twitterOutput.classList.remove('stat__number--limit')
+    facebookCharsLeft < 0 ? facebookOutput.classList.add('stat__number--limit') : facebookOutput.classList.remove('stat__number--limit');
+    twitterCharsLeft < 0 ? twitterOutput.classList.add('stat__number--limit') : twitterOutput.classList.remove('stat__number--limit');
 });
