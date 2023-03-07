@@ -4,7 +4,7 @@ const wordsOutput = document.querySelector('.stat__number--words');
 const twitterOutput = document.querySelector('.stat__number--twitter');
 const facebookOutput = document.querySelector('.stat__number--facebook');
 
-textAreaEl.addEventListener('input', () => {
+const inputHandler = () => {
     const allChars = textAreaEl.value;
     const numberOfChars = textAreaEl.value.length;
     const twitterCharsLeft = 280 - numberOfChars;
@@ -24,11 +24,13 @@ textAreaEl.addEventListener('input', () => {
 
     // input validation
     if (textAreaEl.value.includes('<script>')) {
-        alert('you cannot use <script> tag')
-        textAreaEl.value = textAreaEl.value.replace('<script>', ' ')
+        alert('you cannot use <script> tag');
+        textAreaEl.value = textAreaEl.value.replace('<script>', ' ');
     }
 
     // add visual indication limit is exceeded
     facebookCharsLeft < 0 ? facebookOutput.classList.add('stat__number--limit') : facebookOutput.classList.remove('stat__number--limit');
     twitterCharsLeft < 0 ? twitterOutput.classList.add('stat__number--limit') : twitterOutput.classList.remove('stat__number--limit');
-});
+};
+
+textAreaEl.addEventListener('input', inputHandler)
