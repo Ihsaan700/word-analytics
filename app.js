@@ -22,6 +22,12 @@ textAreaEl.addEventListener('input', () => {
     // if text-area is empty show 0 words
     textAreaEl.value.length === 0 ? wordsOutput.textContent = 0 : null
 
+    // input validation
+    if (textAreaEl.value.includes('<script>')) {
+        alert('you cannot use <script> tag')
+        textAreaEl.value = textAreaEl.value.replace('<script>', ' ')
+    }
+
     // add visual indication limit is exceeded
     facebookCharsLeft < 0 ? facebookOutput.classList.add('stat__number--limit') : facebookOutput.classList.remove('stat__number--limit');
     twitterCharsLeft < 0 ? twitterOutput.classList.add('stat__number--limit') : twitterOutput.classList.remove('stat__number--limit');
